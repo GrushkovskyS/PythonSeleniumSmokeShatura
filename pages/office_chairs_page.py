@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class OfficeChairsPage(Base):  # Страница "Офисные кресла"
@@ -138,11 +139,14 @@ class OfficeChairsPage(Base):  # Страница "Офисные кресла"
     # Methods
 
     def assert_office_chairs_word(self):  # Метод: Проверка загрузки страницы "Офисные кресла"
+        Logger.add_start_step(method="assert_office_chairs_word")
         self.get_current_url()
         self.get_assert_word(self.get_office_chairs_word(),
                              "ОФИСНЫЕ ДИВАНЫ, КРЕСЛА, СТУЛЬЯ, ПОДГРУППА ТОВАРА: ОФИСНЫЕ КРЕСЛА")
+        Logger.add_end_step(url=self.driver.current_url, method="assert_office_chairs_word")
 
     def chairs_select(self):
+        Logger.add_start_step(method="chairs_select")
         self.click_filters()
         self.click_shade()  # Выбор оттенка:
         self.click_shade_light()  # Светлый
@@ -173,4 +177,4 @@ class OfficeChairsPage(Base):  # Страница "Офисные кресла"
         self.click_button_add_to_cart_604()
         time.sleep(2)
         self.click_button_order()
-
+        Logger.add_end_step(url=self.driver.current_url, method="chairs_select")

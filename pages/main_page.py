@@ -1,10 +1,10 @@
-import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):  # Главная страница
@@ -92,6 +92,7 @@ class MainPage(Base):  # Главная страница
     # Methods
 
     def authorization(self):  # Авторизация с проверкой
+        Logger.add_start_step(method="authorization")
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()
@@ -103,6 +104,9 @@ class MainPage(Base):  # Главная страница
         self.click_button_login()
         self.click_profile_button_2()
         self.get_assert_word(self.get_main_word(), "Мой профиль")
+        Logger.add_end_step(url=self.driver.current_url, method="authorization")
 
     def select_products_point(self):  # Переход на страницу "Товары"
+        Logger.add_start_step(method="select_products_point")
         self.click_button_products()
+        Logger.add_end_step(url=self.driver.current_url, method="select_products_point")

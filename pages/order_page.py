@@ -7,6 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
+from utilities.logger import Logger
+
 
 class OrderPage(Base):
 
@@ -137,10 +139,13 @@ class OrderPage(Base):
     # Methods
 
     def assert_order_page_word(self):  # Метод: Проверка загрузки страницы "Оформление заказа"
+        Logger.add_start_step(method="assert_order_page_word")
         self.get_current_url()
         self.get_assert_word(self.get_order_page_word(), "Оформление заказа")
+        Logger.add_end_step(url=self.driver.current_url, method="assert_order_page_word")
 
     def place_an_order(self):
+        Logger.add_start_step(method="place_an_order")
         self.send_last_name()
         # self.send_name()
         self.send_phone()
@@ -158,3 +163,4 @@ class OrderPage(Base):
         time.sleep(2)
         self.click_delete_product()  # Вместо оформления заказа удаляем товар
         self.get_screenshot()
+        Logger.add_end_step(url=self.driver.current_url, method="place_an_order")

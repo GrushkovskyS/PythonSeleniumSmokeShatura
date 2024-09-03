@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.office_chairs_page import OfficeChairsPage
+from utilities.logger import Logger
 
 
 class CartPage(OfficeChairsPage):
@@ -42,11 +43,14 @@ class CartPage(OfficeChairsPage):
     # Methods
 
     def assert_cart_page_word(self):  # Метод: Проверка загрузки страницы "Корзина"
+        Logger.add_start_step(method="assert_cart_page_word")
         self.get_current_url()
         self.get_assert_word(self.get_cart_page_word(), "КОРЗИНА")
+        Logger.add_end_step(url=self.driver.current_url, method="assert_cart_page_word")
 
     def cart_order_confirmation(self):  # Метод проверки имени и цены товара с именем и ценой в корзине и подтверждением заказа
+        Logger.add_start_step(method="cart_order_confirmation")
         self.assert_cart_product_name(self.get_chair_604_name(), self.get_cart_product_name())
         #self.assert_cart_product_price(self.get_price_chair_604(), self.get_cart_product_price_total())  # Непонятно почему не работает проверка цены с финальным значением суммы ???
         self.click_cart_button_order_confirmation()
-
+        Logger.add_end_step(url=self.driver.current_url, method="cart_order_confirmation")
