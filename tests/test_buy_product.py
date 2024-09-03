@@ -1,5 +1,6 @@
 from selenium import webdriver
 
+import allure
 from pages.cart_page import CartPage
 from pages.main_page import MainPage
 from pages.office_chairs_page import OfficeChairsPage
@@ -7,9 +8,10 @@ from pages.order_page import OrderPage
 from pages.products_page import ProductsPage
 
 
+@allure.description("Test buy product")
 def test_buy_product(set_up):
     options = webdriver.ChromeOptions()
-    #options.add_argument("headless")
+    # options.add_argument("headless")
     # options.add_experimental_option("detach", True)
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--ignore-ssl-errors")
@@ -37,4 +39,3 @@ def test_buy_product(set_up):
     order_page = OrderPage(driver)
     order_page.assert_order_page_word()  # Проверка загрузки страницы "Оформление заказа"
     order_page.place_an_order()  # Оформление заказа
-

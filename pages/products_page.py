@@ -1,6 +1,6 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
@@ -43,13 +43,15 @@ class ProductsPage(Base):  # Страница "Товары"
     # Methods
 
     def assert_products_word(self):  # Метод: Проверка загрузки страницы "Товары"
-        Logger.add_start_step(method="assert_products_word")
-        self.get_current_url()
-        self.get_assert_word(self.get_products_word(), "КАТАЛОГ МЕБЕЛИ В МОСКВЕ")
-        Logger.add_end_step(url=self.driver.current_url, method="assert_products_word")
+        with allure.step("Assert products word"):
+            Logger.add_start_step(method="assert_products_word")
+            self.get_current_url()
+            self.get_assert_word(self.get_products_word(), "КАТАЛОГ МЕБЕЛИ В МОСКВЕ")
+            Logger.add_end_step(url=self.driver.current_url, method="assert_products_word")
 
     def office_chairs_select(self):  # Метод: Переход на страницу "Офисные кресла"
-        Logger.add_start_step(method="office_chairs_select")
-        self.click_office_chairs()
-        self.click_office_chairs_2()
-        Logger.add_end_step(url=self.driver.current_url, method="office_chairs_select")
+        with allure.step("Office chairs select"):
+            Logger.add_start_step(method="office_chairs_select")
+            self.click_office_chairs()
+            self.click_office_chairs_2()
+            Logger.add_end_step(url=self.driver.current_url, method="office_chairs_select")

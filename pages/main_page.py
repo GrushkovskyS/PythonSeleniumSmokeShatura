@@ -1,4 +1,4 @@
-
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -92,21 +92,23 @@ class MainPage(Base):  # Главная страница
     # Methods
 
     def authorization(self):  # Авторизация с проверкой
-        Logger.add_start_step(method="authorization")
-        self.driver.get(self.url)
-        self.driver.maximize_window()
-        self.get_current_url()
-        self.click_profile_button()
-        self.click_button_login_1()
-        self.click_button_log_pass()
-        self.input_user_mail("ivan144550@gmail.com")
-        self.input_user_password("212121")
-        self.click_button_login()
-        self.click_profile_button_2()
-        self.get_assert_word(self.get_main_word(), "Мой профиль")
-        Logger.add_end_step(url=self.driver.current_url, method="authorization")
+        with allure.step("authorization"):
+            Logger.add_start_step(method="authorization")
+            self.driver.get(self.url)
+            self.driver.maximize_window()
+            self.get_current_url()
+            self.click_profile_button()
+            self.click_button_login_1()
+            self.click_button_log_pass()
+            self.input_user_mail("ivan144550@gmail.com")
+            self.input_user_password("212121")
+            self.click_button_login()
+            self.click_profile_button_2()
+            self.get_assert_word(self.get_main_word(), "Мой профиль")
+            Logger.add_end_step(url=self.driver.current_url, method="authorization")
 
     def select_products_point(self):  # Переход на страницу "Товары"
-        Logger.add_start_step(method="select_products_point")
-        self.click_button_products()
-        Logger.add_end_step(url=self.driver.current_url, method="select_products_point")
+        with allure.step("Select products point"):
+            Logger.add_start_step(method="select_products_point")
+            self.click_button_products()
+            Logger.add_end_step(url=self.driver.current_url, method="select_products_point")

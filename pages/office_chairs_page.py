@@ -1,5 +1,5 @@
 import time
-
+import allure
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -139,42 +139,44 @@ class OfficeChairsPage(Base):  # Страница "Офисные кресла"
     # Methods
 
     def assert_office_chairs_word(self):  # Метод: Проверка загрузки страницы "Офисные кресла"
-        Logger.add_start_step(method="assert_office_chairs_word")
-        self.get_current_url()
-        self.get_assert_word(self.get_office_chairs_word(),
-                             "ОФИСНЫЕ ДИВАНЫ, КРЕСЛА, СТУЛЬЯ, ПОДГРУППА ТОВАРА: ОФИСНЫЕ КРЕСЛА")
-        Logger.add_end_step(url=self.driver.current_url, method="assert_office_chairs_word")
+        with allure.step("Assert office chairs word"):
+            Logger.add_start_step(method="assert_office_chairs_word")
+            self.get_current_url()
+            self.get_assert_word(self.get_office_chairs_word(),
+                                 "ОФИСНЫЕ ДИВАНЫ, КРЕСЛА, СТУЛЬЯ, ПОДГРУППА ТОВАРА: ОФИСНЫЕ КРЕСЛА")
+            Logger.add_end_step(url=self.driver.current_url, method="assert_office_chairs_word")
 
     def chairs_select(self):
-        Logger.add_start_step(method="chairs_select")
-        self.click_filters()
-        self.click_shade()  # Выбор оттенка:
-        self.click_shade_light()  # Светлый
-        time.sleep(2)
-        self.assert_url(
-            "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/tov_subgroup-is-ofisnye_kresla/color-is-temnyy/")  # Проверка применения параметра фильтра Оттенка: "Тёмный"
-        self.click_color()
-        self.scroll_window_color()
-        self.click_color_black()
-        time.sleep(2)
-        self.assert_url(
-            "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Цвета: "Чёрный"
-        self.click_size()
-        time.sleep(2)
-        self.move_height_size()
-        time.sleep(2)
-        self.assert_url("https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/price-from-422/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Высоты: от 422
-        self.click_size()
-        time.sleep(2)
-        self.send_length_size()
-        time.sleep(2)
-        self.assert_url(
-            "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/price-from-422-to-1000/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Длинны: до 1000
-        self.move_to_chair_604()
-        self.assert_product_name(self.get_chair_604_name())  # Проверка названия товара
-        self.assert_product_price(self.get_price_chair_604())  # Проверка цены товара
-        time.sleep(2)
-        self.click_button_add_to_cart_604()
-        time.sleep(2)
-        self.click_button_order()
-        Logger.add_end_step(url=self.driver.current_url, method="chairs_select")
+        with allure.step("Chairs select"):
+            Logger.add_start_step(method="chairs_select")
+            self.click_filters()
+            self.click_shade()  # Выбор оттенка:
+            self.click_shade_light()  # Светлый
+            time.sleep(2)
+            self.assert_url(
+                "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/tov_subgroup-is-ofisnye_kresla/color-is-temnyy/")  # Проверка применения параметра фильтра Оттенка: "Тёмный"
+            self.click_color()
+            self.scroll_window_color()
+            self.click_color_black()
+            time.sleep(2)
+            self.assert_url(
+                "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Цвета: "Чёрный"
+            self.click_size()
+            time.sleep(2)
+            self.move_height_size()
+            time.sleep(2)
+            self.assert_url("https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/price-from-422/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Высоты: от 422
+            self.click_size()
+            time.sleep(2)
+            self.send_length_size()
+            time.sleep(2)
+            self.assert_url(
+                "https://www.shatura.com/goods/groups/ofisnye_divany_kresla_stulya/price-from-422-to-1000/tov_subgroup-is-ofisnye_kresla/cloth_color-is-chernyy/color-is-temnyy/")  # Проверка применения параметра фильтра Длинны: до 1000
+            self.move_to_chair_604()
+            self.assert_product_name(self.get_chair_604_name())  # Проверка названия товара
+            self.assert_product_price(self.get_price_chair_604())  # Проверка цены товара
+            time.sleep(2)
+            self.click_button_add_to_cart_604()
+            time.sleep(2)
+            self.click_button_order()
+            Logger.add_end_step(url=self.driver.current_url, method="chairs_select")

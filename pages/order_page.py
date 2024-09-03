@@ -1,5 +1,5 @@
 import time
-
+import allure
 from base.base_class import Base
 
 from selenium.webdriver import ActionChains, Keys
@@ -139,28 +139,30 @@ class OrderPage(Base):
     # Methods
 
     def assert_order_page_word(self):  # Метод: Проверка загрузки страницы "Оформление заказа"
-        Logger.add_start_step(method="assert_order_page_word")
-        self.get_current_url()
-        self.get_assert_word(self.get_order_page_word(), "Оформление заказа")
-        Logger.add_end_step(url=self.driver.current_url, method="assert_order_page_word")
+        with allure.step("Assert order page word"):
+            Logger.add_start_step(method="assert_order_page_word")
+            self.get_current_url()
+            self.get_assert_word(self.get_order_page_word(), "Оформление заказа")
+            Logger.add_end_step(url=self.driver.current_url, method="assert_order_page_word")
 
     def place_an_order(self):
-        Logger.add_start_step(method="place_an_order")
-        self.send_last_name()
-        # self.send_name()
-        self.send_phone()
-        self.move_to_floor()
-        self.send_city()
-        self.send_street()
-        self.send_house()
-        self.send_flat()
-        self.send_entrance()
-        self.send_floor()
-        self.move_marker_1()
-        self.click_radio_4()
-        time.sleep(2)
-        self.click_radio_7()
-        time.sleep(2)
-        self.click_delete_product()  # Вместо оформления заказа удаляем товар
-        self.get_screenshot()
-        Logger.add_end_step(url=self.driver.current_url, method="place_an_order")
+        with allure.step("Place an order"):
+            Logger.add_start_step(method="place_an_order")
+            self.send_last_name()
+            # self.send_name()
+            self.send_phone()
+            self.move_to_floor()
+            self.send_city()
+            self.send_street()
+            self.send_house()
+            self.send_flat()
+            self.send_entrance()
+            self.send_floor()
+            self.move_marker_1()
+            self.click_radio_4()
+            time.sleep(2)
+            self.click_radio_7()
+            time.sleep(2)
+            self.click_delete_product()  # Вместо оформления заказа удаляем товар
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="place_an_order")
