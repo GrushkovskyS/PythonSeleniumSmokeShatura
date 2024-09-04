@@ -11,9 +11,9 @@ from utilities.logger import Logger
 
 class OfficeChairsPage(Base):  # Страница "Офисные кресла"
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     self.driver = driver
 
     #  Locators
 

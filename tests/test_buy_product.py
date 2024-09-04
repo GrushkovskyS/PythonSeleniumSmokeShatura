@@ -12,7 +12,7 @@ from pages.products_page import ProductsPage
 def test_buy_product(set_up):
     options = webdriver.ChromeOptions()
     # options.add_argument("headless")
-    # options.add_experimental_option("detach", True)
+    options.add_experimental_option("detach", True)
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--ignore-ssl-errors")
     options.page_load_strategy = 'eager'

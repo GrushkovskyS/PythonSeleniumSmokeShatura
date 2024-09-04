@@ -2,7 +2,6 @@ import datetime
 
 
 class Base:
-
     def __init__(self, driver):
         self.driver = driver
 
@@ -25,8 +24,10 @@ class Base:
         print(f"{value_product} - Название товара - ОК")
 
     def  assert_product_price(self, price):  # Метод проверяет цену товара
+        global value_product_price
         value_product_price = price.text
         print(f"{value_product_price} - Цена товара - ОК")
+        return
 
     def assert_cart_product_name(self, name, name_cart):  # Метод сверяет имя товара с именем в корзине
         value_product = name.text
@@ -34,8 +35,7 @@ class Base:
         assert value_product_cart == value_product
         print(f"{value_product} = {value_product_cart} - Название товара совпадает с названием товара в корзине- ОК")
 
-    def assert_cart_product_price(self, price, price_cart):  # Метод сверяет имя товара с именем в корзине
-        value_product_price = price.text
+    def assert_cart_product_price(self, price_cart):  # Метод сверяет цену товара с ценой в корзине
         value_product_cart_price = price_cart.text
         assert value_product_cart_price == value_product_price
         print(f"{value_product_price} = {value_product_cart_price} - Цена товара совпадает с ценой товара в корзине- ОК")
@@ -46,5 +46,5 @@ class Base:
         name_screen = f'products{naw_date}.png'  # Создаём переменную в которую записываем скриншот, добавляем текущее время
         # и расширение.
         self.driver.save_screenshot(
-            f'C:\\Users\\SAM\\PycharmProjects\\projectMI\\screenshot\\{name_screen}')  # делаем скриншот
+            f'screenshot\\{name_screen}')  # делаем скриншот
         # в директорию "screen".

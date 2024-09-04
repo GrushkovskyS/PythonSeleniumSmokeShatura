@@ -12,9 +12,9 @@ from utilities.logger import Logger
 
 class OrderPage(Base):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     self.driver = driver
 
     #  Locators
 

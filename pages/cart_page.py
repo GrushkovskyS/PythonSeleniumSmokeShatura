@@ -10,9 +10,9 @@ from utilities.logger import Logger
 
 class CartPage(OfficeChairsPage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     self.driver = driver
 
     #  Locators
 
@@ -53,6 +53,6 @@ class CartPage(OfficeChairsPage):
         with allure.step("Cart order confirmation"):
             Logger.add_start_step(method="cart_order_confirmation")
             self.assert_cart_product_name(self.get_chair_604_name(), self.get_cart_product_name())
-            #self.assert_cart_product_price(self.get_price_chair_604(), self.get_cart_product_price_total())  # Непонятно почему не работает проверка цены с финальным значением суммы ???
+            self.assert_cart_product_price(self.get_cart_product_price_total())  # Непонятно почему не работает проверка цены с финальным значением суммы ???
             self.click_cart_button_order_confirmation()
             Logger.add_end_step(url=self.driver.current_url, method="cart_order_confirmation")

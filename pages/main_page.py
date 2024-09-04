@@ -10,11 +10,11 @@ from utilities.logger import Logger
 class MainPage(Base):  # Главная страница
     url = 'https://www.shatura.com/'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     self.driver = driver
 
-        #  Locators
+    #  Locators
 
     profile_button = '(//button[@class="header-middle__btn js_header_btn_menu_icon"])[1]'
     profile_button_2 = '(//button[@class="header-middle__btn js_header_btn_menu_icon"])[2]'
